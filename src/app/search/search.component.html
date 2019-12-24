@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> </title>
+  </head>
+  <body>
+    <input
+      type="text"
+      placeholder="place URL here"
+      [(ngModel)]="searchUrl"
+      aria-describedby="basic-addon1"
+    />
+
+    <button
+      (click)="search()"
+      class="btn btn-success"
+      style="display: block; margin: auto;"
+    >
+      search
+    </button>
+
+    <select
+      style="display: inline;"
+      *ngIf="searchUrlHistory.length"
+      (change)="showBrowsingHistory($event.target.value)"
+    >
+      <option value="">Browsed URL History</option>
+      <option
+        [value]="previousQuery"
+        *ngFor="let previousQuery of searchUrlHistory"
+        >{{ previousQuery }}
+      </option>
+    </select>
+
+    <div *ngIf="isError">
+      {{ errorResponse }}
+    </div>
+
+    <div>
+      <table *ngIf="isShown">
+        <tr *ngFor="let item of response">
+          <td>{{ item.key }} : {{ item.count }},</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
