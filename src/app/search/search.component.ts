@@ -6,6 +6,7 @@ import { HttpService } from "../service/http.service";
   templateUrl: "./search.component.html",
   styleUrls: ["./search.component.css"]
 })
+//search component to display search results in the search page
 export class SearchComponent implements OnInit {
   private baseUrl: string;
   searchUrl: string;
@@ -29,6 +30,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {}
 
+  //function take search input and call http service to get search results
   async search() {
     try {
       this.isShown = true;
@@ -47,13 +49,13 @@ export class SearchComponent implements OnInit {
       this.response = apiResponse.orderedResponse;
     } catch (error) {
       this.storeSearchHistory(this.postData.url, error);
-      // this.searchUrlResultHistory.set(this.postData.url, error);
       this.isShown = false;
       this.isError = true;
       this.errorResponse = error;
     }
   }
 
+  //function to store search url's and history
   storeSearchHistory(url: string, apiResponse: any) {
     //store the previous search url's
     if (
@@ -68,6 +70,7 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  //function to display previous search history
   showBrowsingHistory(url) {
     const tempResponse = this.searchUrlResultHistory.get(url);
     if (typeof tempResponse !== "string") {

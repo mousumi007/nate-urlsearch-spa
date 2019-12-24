@@ -4,9 +4,11 @@ import { HttpClient } from "@angular/common/http";
 @Injectable({
   providedIn: "root"
 })
+//Seperate class for Http service
 export class HttpService {
   constructor(private http: HttpClient) {}
 
+  //function to make http post requests
   async postToApi(baseUrl: string, requestBody: any) {
     try {
       const response: any = await this.http
